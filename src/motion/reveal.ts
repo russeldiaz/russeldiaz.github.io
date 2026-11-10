@@ -9,6 +9,16 @@ function introSequence() {
   gsap
     .timeline({ defaults: { ease: 'expo.out' } })
     .from('.nav', { y: -24, autoAlpha: 0, duration: 0.9 })
+    .from(
+      '.nav__logo',
+      {
+        clipPath: 'inset(0 0 100% 0)',
+        duration: 1.1,
+        ease: 'power3.inOut',
+        clearProps: 'clipPath',
+      },
+      0.15,
+    )
     .from('.nav__links li', { y: -12, autoAlpha: 0, stagger: 0.08, duration: 0.6 }, 0.2)
     .from(
       '.carousel',

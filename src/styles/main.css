@@ -84,9 +84,20 @@ main {
 
 .nav__brand {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
   text-decoration: none;
   line-height: 1.1;
+}
+
+.nav__logo {
+  height: 2.6rem;
+  width: auto;
+}
+
+.nav__text {
+  display: flex;
+  flex-direction: column;
 }
 
 .nav__name {
@@ -379,6 +390,16 @@ main {
   stroke-width: 2;
 }
 
+/* Monogram sits in the card's top-right corner, like a maker's mark */
+.card__logo {
+  position: absolute;
+  top: clamp(2rem, 6vw, 4.5rem);
+  right: clamp(2rem, 6vw, 4.5rem);
+  height: clamp(4.5rem, 12vw, 7.5rem);
+  width: auto;
+  opacity: 0.9;
+}
+
 .card__name {
   font-family: var(--font-display);
   font-weight: 800;
@@ -543,17 +564,27 @@ main {
     padding-top: 1rem;
   }
 
+  /* Labels and handles stay side by side so the card fits one phone screen */
   .card__links {
-    grid-template-columns: 1fr;
-    gap: 0.1rem;
+    grid-template-columns: 5.25rem 1fr;
+    gap: 0.55rem 0.75rem;
+    font-size: 0.9375rem;
   }
 
   .card__links dd {
-    margin-bottom: 0.6rem;
+    overflow-wrap: anywhere;
   }
 
   .card {
     padding: 2.25rem 1.5rem;
+  }
+
+  /* Not enough width beside the name: the monogram heads the card instead */
+  .card__logo {
+    position: static;
+    display: block;
+    height: 3.25rem;
+    margin-bottom: 1rem;
   }
 
   .card__role {
@@ -584,6 +615,19 @@ main {
     font-size: 0.7rem;
     white-space: nowrap;
   }
+
+  .nav__brand {
+    gap: 0.5rem;
+  }
+
+  .nav__logo {
+    height: 2.1rem;
+  }
+
+  /* No room for both links: the logo and name already lead to the work page */
+  .nav__links li:first-child {
+    display: none;
+  }
 }
 
 /* Phones held sideways: give the artwork as much height as possible */
@@ -594,6 +638,10 @@ main {
 
   .nav__name {
     font-size: var(--step-1);
+  }
+
+  .nav__logo {
+    height: 2rem;
   }
 
   .carousel {

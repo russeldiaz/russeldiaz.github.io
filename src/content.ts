@@ -17,6 +17,7 @@ export interface ProfileLink {
 export const links: ProfileLink[] = [
   { label: 'Email', handle: email, url: `mailto:${email}` },
   { label: 'Instagram', handle: '@grompsyndrome', url: 'https://www.instagram.com/grompsyndrome/' },
+  { label: 'X (Twitter)', handle: '@grompsyndrome', url: 'https://x.com/grompsyndrome' },
   { label: 'Gallery', handle: 'grompgallery.carrd.co', url: 'https://grompgallery.carrd.co/' },
 ];
 

@@ -9,10 +9,8 @@
       content="Featured work and contact details for Russel Diaz, 2D Illustrator and Concept Designer."
     />
     <meta name="theme-color" content="#15171d" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315171D'/%3E%3Cpath d='M4 28 16 4 28 28' fill='none' stroke='%237FB6E6' stroke-width='2'/%3E%3C/svg%3E"
-    />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,8 +23,11 @@
 
     <header class="nav">
       <a class="nav__brand" href="#work">
-        <span class="nav__name" data-content="name"></span>
-        <span class="nav__role" data-content="role"></span>
+        <img class="nav__logo" src="/logo.png" alt="" width="183" height="240" />
+        <span class="nav__text">
+          <span class="nav__name" data-content="name"></span>
+          <span class="nav__role" data-content="role"></span>
+        </span>
       </a>
       <nav aria-label="Main">
         <ul class="nav__links">
@@ -79,6 +80,7 @@
               pathLength="1"
             />
           </svg>
+          <img class="card__logo" src="/logo.png" alt="" width="183" height="240" />
           <h2 id="about-title" class="card__name" data-content="name"></h2>
           <p class="card__role" data-content="role"></p>
           <dl class="card__links" data-content="links"></dl>
