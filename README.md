@@ -1,10 +1,10 @@
 # art-portfolio
 
-An animated, one-page business card for Russel Diaz, a 2D artist and concept artist. Built with Vite, TypeScript and GSAP, and deployed to GitHub Pages.
+An animated, two-screen business card for Russel Diaz, 2D Illustrator & Concept Designer. Built with Vite, TypeScript and GSAP, and deployed to GitHub Pages.
 
 - Product requirements: [docs/PRD-russel-diaz-portfolio.md](docs/PRD-russel-diaz-portfolio.md)
 - Updating the featured carousel (for the owner): [docs/OWNER-GUIDE.md](docs/OWNER-GUIDE.md)
-- Card text (name, bio, links, email): `src/content.ts`
+- Card text (name, title, email, links): `src/content.ts`
 
 ## Develop
 
@@ -16,4 +16,4 @@ npm run lint
 npm run build      # outputs dist/
 ```
 
-Set `VITE_CLOUDINARY_CLOUD_NAME` in a `.env.local` file to preview live Cloudinary images locally; without it, the carousel shows the bundled placeholder art.
+The carousel loads images tagged `featured` from Russel's Cloudinary account (`olfmcr5o`). If none are tagged or Cloudinary is unreachable, it shows the bundled placeholder art. Set `VITE_CLOUDINARY_CLOUD_NAME` to point at a different account.

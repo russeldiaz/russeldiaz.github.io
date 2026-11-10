@@ -2,7 +2,7 @@
 
 ## 1. Summary
 
-A one-page, animated online business card for Russel Diaz, a 2D artist and concept artist. It is made to help him get hired: a recruiter should see his best work and his contact details in under a minute. It runs free on GitHub Pages, and Russel can change the featured art without touching code.
+An animated online business card for Russel Diaz, 2D Illustrator & Concept Designer. It is made to help him get hired: a recruiter should see his best work and his contact details in under a minute. It runs free on GitHub Pages, and Russel can change the featured art without touching code.
 
 ## 3. Background
 
@@ -32,7 +32,7 @@ Constraints: static hosting only (GitHub Pages), free services only, and nothing
 - **Who:** studio recruiters and art directors.
 - **Why:** decide quickly whether a 2D/concept artist is worth an interview.
 - **What before:** dig through long galleries or social feeds mixed with unrelated posts.
-- **How:** a short, hand-picked carousel of his best pieces, then a clear bio and contact.
+- **How:** his hand-picked best pieces are the very first thing on screen, and his contact details are one scroll away.
 - **What after:** they judge his level in seconds and know exactly how to reach him.
 - **Alternatives:** ArtStation or Instagram profiles. This card is more focused, looks more polished, and is all his own brand.
 
@@ -53,15 +53,15 @@ _Statement:_ Russel controls his highlights from a free upload page, and the sit
 
 ### 7.1 Key flow
 
-The visitor lands on a hero with his name and title, over a moving line-art background. The featured carousel comes next: clicking a piece opens it full size. Then an intro card with his bio, a contact button and his social/pro IDs.
+The site has two full-screen pages that snap into place, like hgjart.com. **Page 1** is the featured carousel, shown straight away, with his name and title in the top bar over a moving line-art background. Clicking a piece opens it full size. **Page 2** is the business card: name, title, email, profile links and an email button. _(Changed 2026-11-10: the separate name/title hero page and the bio were removed, so recruiters see the work first and the card stays minimal.)_
 
 ### 7.2 Key features
 
 - **Featured carousel:** tall frames that crop artwork to fit; a click opens a lightbox showing the whole image. Works with arrows, swipe and keyboard.
 - **Cloudinary-powered:** the list of images tagged `featured` is fetched on page load. A bundled fallback list keeps the carousel filled if the fetch fails.
 - **Motion everywhere:** animated background, text reveals, card tilt, button and nav effects. Everything calms down for visitors who ask their device for reduced motion.
-- **Intro card:** bio, an email contact button, and links to his social and professional profiles.
-- **Responsive:** works from 360px phones to large desktops.
+- **Business card:** name, title, email (diazart19111@gmail.com), an email button, and links to his professional profiles. No bio.
+- **Responsive:** works from 360px phones to large desktops, including phones held sideways.
 
 ### 7.3 Technology
 
@@ -71,7 +71,7 @@ Vite + TypeScript, GSAP for animation, and a canvas for the background. Deployed
 
 - _Assumption:_ the Cloudinary free plan (25 monthly credits) is enough for a portfolio's traffic.
 - _Assumption:_ the Cloudinary tag list (`/image/list/featured.json`) stays available on the free plan.
-- _Open:_ Russel's real bio, email, social links, Cloudinary cloud name and the GitHub repo name. Placeholders are used until he supplies them.
+- _Open:_ Russel's real social links, Cloudinary cloud name and the GitHub repo name. Placeholders are used until he supplies them.
 
 ## 8. Release
 

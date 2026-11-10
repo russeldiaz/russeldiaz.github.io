@@ -2,14 +2,13 @@
 
 The carousel on the site shows every image in Cloudinary that has the tag **`featured`**, newest first. It costs nothing and needs no code changes.
 
-## One-time setup (about 10 minutes)
+## One-time setup (about 5 minutes)
 
-1. Create a free account at <https://cloudinary.com>. The free plan needs no credit card.
-2. Copy your **cloud name**. It's shown on the dashboard, under _Product Environment_.
-3. In Cloudinary go to **Settings › Security** and, under _Restricted media types_, **untick "Resource list"**, then save. This lets the site read the list of featured images.
-4. In the GitHub repository go to **Settings › Secrets and variables › Actions › Variables** and add a variable named `CLOUDINARY_CLOUD_NAME` with your cloud name as its value.
-5. In **Settings › Pages**, set _Source_ to **GitHub Actions**.
-6. Re-run the latest _Deploy to GitHub Pages_ workflow (Actions tab › the workflow › _Run workflow_).
+1. The site is already connected to the Cloudinary account with cloud name **`olfmcr5o`** (set in `src/content.ts`).
+2. In Cloudinary go to **Settings › Security** and, under _Restricted media types_, **untick "Resource list"**, then save. This lets the site read the list of featured images.
+3. In the GitHub repository, under **Settings › Pages**, set _Source_ to **GitHub Actions**.
+
+To switch to a different Cloudinary account later, change the cloud name in `src/content.ts`, or set a repository variable named `CLOUDINARY_CLOUD_NAME` (Settings › Secrets and variables › Actions › Variables) and redeploy.
 
 ## Adding a piece
 
@@ -29,6 +28,6 @@ The carousel on the site shows every image in Cloudinary that has the tag **`fea
 
 That means the site couldn't read the list. Check that:
 
-- "Resource list" is unticked (setup step 3),
+- "Resource list" is unticked (setup step 2),
 - at least one image has the exact tag `featured` (lowercase),
-- the `CLOUDINARY_CLOUD_NAME` variable is spelled correctly, and the site was redeployed after adding it.
+- the images were uploaded to the `olfmcr5o` account.

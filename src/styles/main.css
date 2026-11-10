@@ -6,9 +6,19 @@
   box-sizing: border-box;
 }
 
+/* Two full-screen pages that snap, like a flipped business card. */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height);
+  scroll-snap-type: y mandatory;
+}
+
+.page {
+  position: relative;
+  min-height: 100svh;
+  padding-top: var(--nav-height);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -50,17 +60,17 @@ a {
   pointer-events: none;
 }
 
-.nav,
-main,
-.footer {
+main {
   position: relative;
   z-index: 1;
 }
 
 /* Navigation */
 .nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   height: var(--nav-height);
   display: flex;
@@ -72,12 +82,24 @@ main,
   border-bottom: 1px solid var(--slate-edge);
 }
 
-.nav__mark {
+.nav__brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 1.1;
+}
+
+.nav__name {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: var(--step-2);
-  text-decoration: none;
   letter-spacing: 0.04em;
+}
+
+.nav__role {
+  font-size: var(--step--1);
+  color: var(--pencil-blue);
+  font-weight: 600;
 }
 
 .nav__links {
@@ -116,78 +138,64 @@ main,
   transform-origin: left;
 }
 
-.nav__cta {
-  color: var(--pencil-blue);
-}
-
-/* Hero */
-.hero {
-  min-height: calc(100svh - var(--nav-height));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem var(--gutter) 4rem;
-}
-
-.hero__name {
-  margin: 0;
-  width: min(100%, 44rem);
-}
-
-.hero__ink {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.hero__line {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 190px;
-  letter-spacing: 0.02em;
-  fill: var(--paper);
-  stroke: var(--pencil-blue);
-  stroke-width: 1.5px;
-}
-
-.hero__role {
-  margin: 1.5rem 0 0;
-  font-size: var(--step-2);
-  color: var(--muted);
-  max-width: 30ch;
-  line-height: 1.3;
-}
-
-.hero__scroll {
-  align-self: flex-start;
-  margin-top: 3rem;
-  font-weight: 600;
-  text-decoration: none;
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--pencil-blue);
-}
-
-/* Featured carousel */
+/* Page 1: featured carousel fills the first screen */
 .featured {
-  padding: 6rem 0;
+  height: 100svh;
   overflow-x: clip;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: var(--step-3);
-  letter-spacing: 0.02em;
-  line-height: 1;
-  margin: 0 var(--gutter) 3rem;
 }
 
 .carousel {
   position: relative;
-  height: clamp(26rem, 70vh, 44rem);
+  flex: 1;
+  min-height: 0;
+  margin-top: clamp(1rem, 3vh, 2rem);
   perspective: 1400px;
   touch-action: pan-y;
+}
+
+.featured__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 0 max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Animated chevrons hinting at the second page */
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.25rem 1rem;
+}
+
+.scroll-cue__chevron {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-top: -0.45rem;
+  border: solid var(--paper);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  animation: cue 1.6s infinite;
+}
+
+.scroll-cue__chevron:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.scroll-cue__chevron:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes cue {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+
+  40% {
+    opacity: 1;
+  }
 }
 
 .carousel__track {
@@ -337,20 +345,21 @@ main,
 
 .carousel__status {
   text-align: center;
-  margin: 1.5rem 0 0;
+  margin: 0;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
-/* About card */
+/* Page 2: the business card */
 .about {
-  padding: 4rem var(--gutter) 6rem;
+  padding-inline: var(--gutter);
 }
 
 .card {
   position: relative;
-  max-width: 56rem;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 48rem;
+  margin: auto;
   padding: clamp(2rem, 6vw, 4.5rem);
   background: color-mix(in srgb, var(--slate) 88%, transparent);
   clip-path: polygon(0 6%, 4% 0, 96% 0, 100% 6%, 100% 94%, 96% 100%, 4% 100%, 0 94%);
@@ -383,11 +392,6 @@ main,
   margin: 0.5rem 0 2rem;
   color: var(--pencil-blue);
   font-weight: 600;
-}
-
-.card__bio p {
-  margin: 0 0 1rem;
-  max-width: 60ch;
 }
 
 .card__links {
@@ -440,10 +444,14 @@ main,
 }
 
 .footer {
-  padding: 2rem var(--gutter);
+  padding: 1.5rem 0 max(1.5rem, env(safe-area-inset-bottom));
+  text-align: center;
   color: var(--muted);
   font-size: var(--step--1);
-  border-top: 1px solid var(--slate-edge);
+}
+
+.footer p {
+  margin: 0;
 }
 
 /* Lightbox */
@@ -514,15 +522,25 @@ main,
     font-size: var(--step--1);
   }
 
-  .carousel__arrow {
-    top: auto;
-    bottom: -4.75rem;
-    width: 2.75rem;
-    height: 2.75rem;
+  .nav__name {
+    font-size: var(--step-1);
   }
 
-  .carousel {
-    margin-bottom: 4rem;
+  .nav__role {
+    font-size: 0.75rem;
+  }
+
+  /* Arrows move below the artwork, either side of the counter */
+  .carousel__arrow {
+    top: auto;
+    bottom: -3.4rem;
+    margin-top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .featured__footer {
+    padding-top: 1rem;
   }
 
   .card__links {
@@ -531,7 +549,71 @@ main,
   }
 
   .card__links dd {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .card {
+    padding: 2.25rem 1.5rem;
+  }
+
+  .card__role {
+    margin-bottom: 1.25rem;
+    line-height: 1.35;
+  }
+
+  .card__links {
+    margin: 1.5rem 0;
+  }
+
+  .footer {
+    padding: 0.75rem 0 max(0.75rem, env(safe-area-inset-bottom));
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav {
+    gap: 0.75rem;
+  }
+
+  .nav__links {
+    gap: 0.9rem;
+  }
+
+  .nav__role {
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+}
+
+/* Phones held sideways: give the artwork as much height as possible */
+@media (max-height: 500px) {
+  :root {
+    --nav-height: 3.25rem;
+  }
+
+  .nav__name {
+    font-size: var(--step-1);
+  }
+
+  .carousel {
+    margin-top: 0.5rem;
+  }
+
+  .frame__title {
+    padding: 1.5rem 0.75rem 0.75rem;
+    font-size: var(--step-0);
+  }
+
+  .featured__footer {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+    padding-block: 0.4rem;
+  }
+
+  .scroll-cue__chevron:nth-child(n + 3) {
+    display: none;
   }
 }
 
@@ -544,5 +626,10 @@ main,
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+  }
+
+  .scroll-cue__chevron {
+    animation: none;
+    opacity: 0.8;
   }
 }

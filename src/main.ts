@@ -15,15 +15,6 @@ function fillContent() {
     .forEach((el) => (el.textContent = profile.role));
   document.querySelector('[data-content="year"]')!.textContent = String(new Date().getFullYear());
 
-  const bio = document.querySelector('[data-content="bio"]')!;
-  bio.replaceChildren(
-    ...profile.bio.map((text) => {
-      const p = document.createElement('p');
-      p.textContent = text;
-      return p;
-    }),
-  );
-
   const list = document.querySelector('[data-content="links"]')!;
   list.replaceChildren(
     ...links.flatMap(({ label, handle, url }) => {
@@ -32,15 +23,17 @@ function fillContent() {
       const dd = document.createElement('dd');
       const a = document.createElement('a');
       a.href = url;
-      a.target = '_blank';
-      a.rel = 'noopener';
+      if (url.startsWith('http')) {
+        a.target = '_blank';
+        a.rel = 'noopener';
+      }
       a.textContent = handle;
       dd.append(a);
       return [dt, dd];
     }),
   );
 
-  document.querySelector<HTMLAnchorElement>('[data-content="email"]')!.href =
+  document.querySelector<HTMLAnchorElement>('[data-content="email-button"]')!.href =
     `mailto:${profile.email}`;
 }
 

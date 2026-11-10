@@ -4,36 +4,22 @@ import { finePointer, reducedMotion } from './preferences';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/** Hero: the name is sketched in blue pencil, then inked, then the role fades in. */
+/** First screen: the top bar drops in, then the artwork rises into place. */
 function introSequence() {
-  const lines = gsap.utils.toArray<SVGTextElement>('.hero__line');
-  const timeline = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
-  timeline
-    .set(lines, { strokeDasharray: 1400, strokeDashoffset: 1400, fillOpacity: 0 })
-    .to(lines, { strokeDashoffset: 0, duration: 1.8, stagger: 0.25 })
-    .to(lines, { fillOpacity: 1, duration: 0.8, stagger: 0.15 }, '-=0.6')
-    .from('.hero__role', { y: 24, autoAlpha: 0, duration: 0.8, ease: 'expo.out' }, '-=0.4')
-    .from('.hero__scroll', { autoAlpha: 0, duration: 0.6 }, '-=0.4')
-    .from('.nav', { y: -20, autoAlpha: 0, duration: 0.8, ease: 'expo.out' }, 0.2);
+  gsap
+    .timeline({ defaults: { ease: 'expo.out' } })
+    .from('.nav', { y: -24, autoAlpha: 0, duration: 0.9 })
+    .from('.nav__links li', { y: -12, autoAlpha: 0, stagger: 0.08, duration: 0.6 }, 0.2)
+    .from(
+      '.carousel',
+      { y: 60, scale: 0.94, autoAlpha: 0, duration: 1.4, clearProps: 'transform' },
+      0.25,
+    )
+    .from('.featured__footer', { y: 16, autoAlpha: 0, duration: 0.8 }, 0.9);
 }
 
-/** Sections draw themselves in as they scroll into view. */
+/** The business card draws its frame, then fills in, when the second page arrives. */
 function scrollReveals() {
-  gsap.from('.section-title', {
-    scrollTrigger: { trigger: '.featured', start: 'top 80%' },
-    clipPath: 'inset(0 100% 0 0)',
-    duration: 1.1,
-    ease: 'expo.out',
-  });
-
-  gsap.from('.carousel', {
-    scrollTrigger: { trigger: '.featured', start: 'top 70%' },
-    y: 80,
-    autoAlpha: 0,
-    duration: 1.2,
-    ease: 'expo.out',
-  });
-
   const card = gsap.timeline({ scrollTrigger: { trigger: '.card', start: 'top 75%' } });
   card
     .from('.card__frame polygon', {
@@ -49,19 +35,12 @@ function scrollReveals() {
       0.5,
     )
     .from('.card__links > *', { x: -16, autoAlpha: 0, stagger: 0.04, duration: 0.5 }, 0.9);
-
-  // The hero name drifts and fades as it scrolls away.
-  gsap.to('.hero__ink', {
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-    yPercent: -30,
-    autoAlpha: 0.15,
-  });
 }
 
 /** Buttons lean toward the cursor. */
 function magneticButtons() {
   if (!finePointer()) return;
-  document.querySelectorAll<HTMLElement>('.button, .carousel__arrow, .nav__mark').forEach((el) => {
+  document.querySelectorAll<HTMLElement>('.button, .carousel__arrow').forEach((el) => {
     const base = el.classList.contains('carousel__arrow') ? 45 : 0;
     el.addEventListener('pointermove', (event) => {
       const rect = el.getBoundingClientRect();
