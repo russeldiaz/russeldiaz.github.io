@@ -404,22 +404,70 @@ main {
 }
 
 .card__links dt {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   color: var(--muted);
+}
+
+/* Small monochrome platform icons beside each label */
+.icon {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--paper);
+}
+
+.icon--fill path {
+  fill: currentColor;
+}
+
+.icon--stroke path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .card__links dd {
   margin: 0;
 }
 
-.card__links a {
+.card__links a,
+.copy {
   text-decoration: none;
   background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat;
   transition: background-size 0.4s var(--ease-out);
 }
 
 .card__links a:hover,
-.card__links a:focus-visible {
+.card__links a:focus-visible,
+.copy:hover,
+.copy:focus-visible {
   background-size: 100% 1px;
+}
+
+/* Copy-to-clipboard handle (Discord): looks like the links, with a small hint */
+.copy {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.copy::after {
+  content: 'copy';
+  margin-left: 0.6rem;
+  font-size: 0.75em;
+  color: var(--muted);
+}
+
+.copy[data-copied]::after {
+  content: 'copied';
+  color: var(--paper);
 }
 
 .button {
@@ -562,10 +610,20 @@ html.scroll-locked body {
   }
 
   /* Labels and handles stay side by side so the card fits one phone screen */
+  /* Phones: icon + handle only; the text label stays for screen readers */
   .card__links {
-    grid-template-columns: 5.25rem 1fr;
-    gap: 0.55rem 0.75rem;
+    grid-template-columns: 1.05rem 1fr;
+    gap: 0.7rem 0.85rem;
     font-size: 0.9375rem;
+  }
+
+  .card__links dt span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .card__links dd {

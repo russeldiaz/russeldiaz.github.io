@@ -1,6 +1,7 @@
 import './styles/main.css';
 import { cloudinary, links, profile } from './content';
 import { startGuides } from './background/guides';
+import { renderLinks } from './card/links';
 import { createCarousel } from './featured/carousel';
 import { createLightbox } from './featured/lightbox';
 import { loadFeatured, type FeaturedArtwork } from './featured/source';
@@ -15,23 +16,7 @@ function fillContent() {
     .forEach((el) => (el.textContent = profile.role));
   document.querySelector('[data-content="year"]')!.textContent = String(new Date().getFullYear());
 
-  const list = document.querySelector('[data-content="links"]')!;
-  list.replaceChildren(
-    ...links.flatMap(({ label, handle, url }) => {
-      const dt = document.createElement('dt');
-      dt.textContent = label;
-      const dd = document.createElement('dd');
-      const a = document.createElement('a');
-      a.href = url;
-      if (url.startsWith('http')) {
-        a.target = '_blank';
-        a.rel = 'noopener';
-      }
-      a.textContent = handle;
-      dd.append(a);
-      return [dt, dd];
-    }),
-  );
+  renderLinks(document.querySelector<HTMLElement>('[data-content="links"]')!, links);
 
   document.querySelector<HTMLAnchorElement>('[data-content="email-button"]')!.href =
     `mailto:${profile.email}`;
