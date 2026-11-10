@@ -38,7 +38,7 @@ function scrollReveals() {
       duration: 1.4,
       ease: 'power2.inOut',
     })
-    .from('.card', { backgroundColor: 'rgba(11, 11, 11, 0)', duration: 0.8 }, 0.4)
+    .from('.card', { backgroundColor: 'rgba(0, 0, 0, 0)', duration: 0.8 }, 0.4)
     .from(
       '.card > :not(svg)',
       { y: 24, autoAlpha: 0, stagger: 0.08, duration: 0.7, ease: 'expo.out' },
