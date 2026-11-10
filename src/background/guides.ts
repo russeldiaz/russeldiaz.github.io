@@ -3,8 +3,7 @@ import { reducedMotion } from '../motion/preferences';
 // Concept-art construction lines: perspective guides converging on a vanishing point
 // that drifts toward the cursor, plus slowly turning spirograph ellipses.
 
-const PENCIL_BLUE = '127, 182, 230';
-const PAPER = '236, 231, 222';
+const WHITE = '255, 255, 255';
 const GUIDE_COUNT = 36;
 const EASING = 0.04;
 
@@ -37,20 +36,20 @@ export function startGuides(canvas: HTMLCanvasElement): void {
     for (let i = 0; i < GUIDE_COUNT; i++) {
       const angle = (i / GUIDE_COUNT) * Math.PI * 2 + time * 0.00004;
       const alpha = i % 6 === 0 ? 0.22 : 0.08;
-      ctx!.strokeStyle = `rgba(${PENCIL_BLUE}, ${alpha})`;
+      ctx!.strokeStyle = `rgba(${WHITE}, ${alpha})`;
       ctx!.beginPath();
       ctx!.moveTo(vanish.x, vanish.y);
       ctx!.lineTo(vanish.x + Math.cos(angle) * reach, vanish.y + Math.sin(angle) * reach);
       ctx!.stroke();
     }
     // Horizon line through the vanishing point
-    ctx!.strokeStyle = `rgba(${PENCIL_BLUE}, 0.18)`;
+    ctx!.strokeStyle = `rgba(${WHITE}, 0.18)`;
     ctx!.beginPath();
     ctx!.moveTo(0, vanish.y);
     ctx!.lineTo(width, vanish.y);
     ctx!.stroke();
-    // Small red-line cross marking the vanishing point
-    ctx!.strokeStyle = 'rgba(226, 86, 75, 0.7)';
+    // Small cross marking the vanishing point
+    ctx!.strokeStyle = `rgba(${WHITE}, 0.8)`;
     ctx!.beginPath();
     ctx!.moveTo(vanish.x - 7, vanish.y);
     ctx!.lineTo(vanish.x + 7, vanish.y);
@@ -63,7 +62,7 @@ export function startGuides(canvas: HTMLCanvasElement): void {
     const cx = width * 0.5;
     const cy = height * 0.55;
     const radius = Math.max(width, height) * 0.42;
-    ctx!.strokeStyle = `rgba(${PAPER}, 0.045)`;
+    ctx!.strokeStyle = `rgba(${WHITE}, 0.045)`;
     for (let i = 0; i < 14; i++) {
       ctx!.beginPath();
       ctx!.ellipse(

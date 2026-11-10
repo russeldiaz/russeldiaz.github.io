@@ -1,12 +1,12 @@
 :root {
-  /* Palette: a concept artist's drawing board */
-  --graphite: #15171d;
-  --slate: #1f232c;
-  --slate-edge: #343a47;
-  --paper: #ece7de;
-  --muted: #9aa1ae;
-  --pencil-blue: #7fb6e6;
-  --redline: #e2564b;
+  /* Black and white; greys only for secondary text and hairlines */
+  --ink: #000000;
+  --panel: #0b0b0b;
+  --edge: #333333;
+  --paper: #ffffff;
+  --muted: #9a9a9a;
+  --accent: #ffffff;
+  --accent-soft: #cfcfcf;
 
   /* Type */
   --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
