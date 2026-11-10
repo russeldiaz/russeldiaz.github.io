@@ -16,17 +16,51 @@ function resource(overrides: Record<string, unknown> = {}) {
 }
 
 describe('parseCloudinaryList', () => {
-  it('builds optimized thumbnail and full-size URLs for each resource', () => {
+  it('smart-crops the card preview to the 9:16 frame and keeps the full image uncropped', () => {
     const [art] = parseCloudinaryList({ resources: [resource()] }, CLOUD);
 
     expect(art.thumbUrl).toBe(
-      'https://res.cloudinary.com/demo-cloud/image/upload/f_auto,q_auto,c_limit,w_900/v1700000000/portfolio/dragon.jpg',
+      'https://res.cloudinary.com/demo-cloud/image/upload/f_auto,q_auto,c_fill,g_auto,w_900,h_1600/v1700000000/portfolio/dragon.jpg',
     );
     expect(art.fullUrl).toBe(
       'https://res.cloudinary.com/demo-cloud/image/upload/f_auto,q_auto,c_limit,w_2400/v1700000000/portfolio/dragon.jpg',
     );
     expect(art.width).toBe(2000);
     expect(art.height).toBe(3000);
+  });
+
+  it('uses a custom preview image, given as a public ID, for the card only', () => {
+    const [art] = parseCloudinaryList(
+      { resources: [resource({ context: { custom: { preview: ' portfolio/dragon-card ' } } })] },
+      CLOUD,
+    );
+
+    expect(art.thumbUrl).toBe(
+      'https://res.cloudinary.com/demo-cloud/image/upload/f_auto,q_auto,c_fill,g_auto,w_900,h_1600/portfolio/dragon-card',
+    );
+    expect(art.fullUrl).toContain('/v1700000000/portfolio/dragon.jpg');
+  });
+
+  it('accepts a copied Cloudinary URL as the custom preview', () => {
+    const [art] = parseCloudinaryList(
+      {
+        resources: [
+          resource({
+            context: {
+              custom: {
+                preview:
+                  'https://res.cloudinary.com/demo-cloud/image/upload/v1712345678/dragon-card_abc123.png',
+              },
+            },
+          }),
+        ],
+      },
+      CLOUD,
+    );
+
+    expect(art.thumbUrl).toBe(
+      'https://res.cloudinary.com/demo-cloud/image/upload/f_auto,q_auto,c_fill,g_auto,w_900,h_1600/v1712345678/dragon-card_abc123.png',
+    );
   });
 
   it('orders artworks newest first', () => {
