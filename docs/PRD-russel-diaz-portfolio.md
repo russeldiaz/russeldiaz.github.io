@@ -71,7 +71,7 @@ Vite + TypeScript, GSAP for animation, and a canvas for the background. Deployed
 
 - _Assumption:_ the Cloudinary free plan (25 monthly credits) is enough for a portfolio's traffic.
 - _Assumption:_ the Cloudinary tag list (`/image/list/featured.json`) stays available on the free plan.
-- _Open:_ Russel's real social links, Cloudinary cloud name and the GitHub repo name. Placeholders are used until he supplies them.
+- _Open:_ the GitHub repo name.
 
 ## 8. Release
 

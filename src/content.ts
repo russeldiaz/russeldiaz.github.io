@@ -14,12 +14,10 @@ export interface ProfileLink {
   url: string;
 }
 
-// The social links below are placeholders: replace the handles and URLs with Russel's profiles.
 export const links: ProfileLink[] = [
   { label: 'Email', handle: email, url: `mailto:${email}` },
-  { label: 'ArtStation', handle: 'russeldiaz', url: 'https://www.artstation.com/' },
-  { label: 'Instagram', handle: '@russeldiaz.art', url: 'https://www.instagram.com/' },
-  { label: 'LinkedIn', handle: 'Russel Diaz', url: 'https://www.linkedin.com/' },
+  { label: 'Instagram', handle: '@grompsyndrome', url: 'https://www.instagram.com/grompsyndrome/' },
+  { label: 'Gallery', handle: 'grompgallery.carrd.co', url: 'https://grompgallery.carrd.co/' },
 ];
 
 /** Russel's Cloudinary account, which hosts the featured carousel (not a secret: it's in every image URL). */
