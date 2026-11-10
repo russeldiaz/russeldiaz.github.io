@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { stepForKey, swipeStep, wrapIndex } from './navigation';
+import { relativeOffset, stepForKey, swipeStep, wrapIndex } from './navigation';
 
 describe('wrapIndex', () => {
   it('wraps past the end back to the start', () => {
@@ -12,6 +12,22 @@ describe('wrapIndex', () => {
 
   it('returns 0 for an empty carousel', () => {
     expect(wrapIndex(3, 0)).toBe(0);
+  });
+});
+
+describe('relativeOffset', () => {
+  it('is zero for the active item', () => {
+    expect(relativeOffset(2, 2, 5)).toBe(0);
+  });
+
+  it('is negative for items to the left and positive to the right', () => {
+    expect(relativeOffset(1, 2, 5)).toBe(-1);
+    expect(relativeOffset(3, 2, 5)).toBe(1);
+  });
+
+  it('takes the shortest way around so the first item sits right of the last', () => {
+    expect(relativeOffset(0, 4, 5)).toBe(1);
+    expect(relativeOffset(4, 0, 5)).toBe(-1);
   });
 });
 

@@ -1,0 +1,26 @@
+:root {
+  /* Palette: a concept artist's drawing board */
+  --graphite: #15171d;
+  --slate: #1f232c;
+  --slate-edge: #343a47;
+  --paper: #ece7de;
+  --muted: #9aa1ae;
+  --pencil-blue: #7fb6e6;
+  --redline: #e2564b;
+
+  /* Type */
+  --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --font-body: 'Instrument Sans', system-ui, sans-serif;
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2.25rem, 5vw, 3.5rem);
+
+  /* Space */
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --nav-height: 4.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

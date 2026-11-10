@@ -45,7 +45,9 @@ describe('parseCloudinaryList', () => {
 
   it('uses caption and alt from custom context when present', () => {
     const [art] = parseCloudinaryList(
-      { resources: [resource({ context: { custom: { caption: 'Sky Warden', alt: 'A knight' } } })] },
+      {
+        resources: [resource({ context: { custom: { caption: 'Sky Warden', alt: 'A knight' } } })],
+      },
       CLOUD,
     );
 
@@ -84,7 +86,9 @@ describe('loadFeatured', () => {
 
     const list = await loadFeatured({ cloudName: CLOUD, tag: 'featured', fallback, fetchFn });
 
-    expect(requested[0]).toMatch(/^https:\/\/res\.cloudinary\.com\/demo-cloud\/image\/list\/featured\.json/);
+    expect(requested[0]).toMatch(
+      /^https:\/\/res\.cloudinary\.com\/demo-cloud\/image\/list\/featured\.json/,
+    );
     expect(list).toHaveLength(1);
     expect(list[0].id).toBe('portfolio/dragon');
   });
@@ -94,19 +98,25 @@ describe('loadFeatured', () => {
       throw new Error('offline');
     };
 
-    expect(await loadFeatured({ cloudName: CLOUD, tag: 'featured', fallback, fetchFn })).toBe(fallback);
+    expect(await loadFeatured({ cloudName: CLOUD, tag: 'featured', fallback, fetchFn })).toBe(
+      fallback,
+    );
   });
 
   it('returns the fallback on a non-OK response', async () => {
     const fetchFn = async () => jsonResponse({}, false);
 
-    expect(await loadFeatured({ cloudName: CLOUD, tag: 'featured', fallback, fetchFn })).toBe(fallback);
+    expect(await loadFeatured({ cloudName: CLOUD, tag: 'featured', fallback, fetchFn })).toBe(
+      fallback,
+    );
   });
 
   it('returns the fallback when the tag has no images', async () => {
     const fetchFn = async () => jsonResponse({ resources: [] });
 
-    expect(await loadFeatured({ cloudName: CLOUD, tag: 'featured', fallback, fetchFn })).toBe(fallback);
+    expect(await loadFeatured({ cloudName: CLOUD, tag: 'featured', fallback, fetchFn })).toBe(
+      fallback,
+    );
   });
 
   it('returns the fallback without fetching when no cloud name is configured', async () => {
@@ -116,7 +126,9 @@ describe('loadFeatured', () => {
       return jsonResponse({});
     };
 
-    expect(await loadFeatured({ cloudName: '', tag: 'featured', fallback, fetchFn })).toBe(fallback);
+    expect(await loadFeatured({ cloudName: '', tag: 'featured', fallback, fetchFn })).toBe(
+      fallback,
+    );
     expect(called).toBe(false);
   });
 });

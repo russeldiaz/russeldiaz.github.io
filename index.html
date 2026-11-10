@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Russel Diaz | 2D artist and concept artist</title>
+    <meta
+      name="description"
+      content="Russel Diaz is a 2D artist and concept artist designing characters, creatures and worlds. See featured work and get in touch."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315171D'/%3E%3Cpath d='M4 28 16 4 28 28' fill='none' stroke='%237FB6E6' stroke-width='2'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;800&family=Instrument+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas class="guides" aria-hidden="true"></canvas>
+
+    <header class="nav">
+      <a class="nav__mark" href="#top" aria-label="Russel Diaz, back to top">RD</a>
+      <nav aria-label="Main">
+        <ul class="nav__links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact" class="nav__cta">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-name">
+        <h1 id="hero-name" class="hero__name">
+          <span class="visually-hidden" data-content="name"></span>
+          <svg
+            class="hero__ink"
+            viewBox="0 0 560 340"
+            aria-hidden="true"
+            preserveAspectRatio="xMinYMid meet"
+          >
+            <text x="0" y="150" class="hero__line">RUSSEL</text>
+            <text x="0" y="320" class="hero__line">DIAZ</text>
+          </svg>
+        </h1>
+        <p class="hero__role" data-content="role"></p>
+        <a class="hero__scroll" href="#work">See featured work</a>
+      </section>
+
+      <section id="work" class="featured" aria-labelledby="featured-title">
+        <h2 id="featured-title" class="section-title">Featured work</h2>
+        <div class="carousel" data-carousel aria-roledescription="carousel">
+          <button
+            class="carousel__arrow carousel__arrow--prev"
+            type="button"
+            aria-label="Previous artwork"
+          ></button>
+          <ul class="carousel__track" aria-live="polite"></ul>
+          <button
+            class="carousel__arrow carousel__arrow--next"
+            type="button"
+            aria-label="Next artwork"
+          ></button>
+        </div>
+        <p class="carousel__status" aria-hidden="true"></p>
+      </section>
+
+      <section id="about" class="about" aria-labelledby="about-title">
+        <article class="card">
+          <svg
+            class="card__frame"
+            aria-hidden="true"
+            preserveAspectRatio="none"
+            viewBox="0 0 100 100"
+          >
+            <polygon
+              points="0,6 4,0 96,0 100,6 100,94 96,100 4,100 0,94"
+              vector-effect="non-scaling-stroke"
+              pathLength="1"
+            />
+          </svg>
+          <h2 id="about-title" class="card__name" data-content="name"></h2>
+          <p class="card__role" data-content="role"></p>
+          <div class="card__bio" data-content="bio"></div>
+          <dl class="card__links" data-content="links"></dl>
+          <a id="contact" class="button" data-content="email">Email Russel</a>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        &copy; <span data-content="year"></span> Russel Diaz. All artwork belongs to the artist.
+      </p>
+    </footer>
+
+    <dialog class="lightbox" aria-label="Artwork viewer">
+      <button class="lightbox__close" type="button" aria-label="Close artwork viewer">Close</button>
+      <figure>
+        <img class="lightbox__image" alt="" />
+        <figcaption class="lightbox__caption"></figcaption>
+      </figure>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -6,6 +6,12 @@ export function wrapIndex(index: number, count: number): number {
   return ((index % count) + count) % count;
 }
 
+/** Signed distance from the active item, wrapping the shorter way around the loop. */
+export function relativeOffset(index: number, active: number, count: number): number {
+  const forward = wrapIndex(index - active, count);
+  return forward > count / 2 ? forward - count : forward;
+}
+
 export function stepForKey(key: string): -1 | 0 | 1 {
   if (key === 'ArrowLeft') return -1;
   if (key === 'ArrowRight') return 1;
