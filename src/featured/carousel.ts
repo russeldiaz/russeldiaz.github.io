@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import type { FeaturedArtwork } from './source';
 import { relativeOffset, stepForKey, swipeStep, wrapIndex } from './navigation';
-import { finePointer, reducedMotion } from '../motion/preferences';
+import { reducedMotion } from '../motion/preferences';
 
 const VISIBLE_RADIUS = 2;
 
@@ -98,30 +98,6 @@ export function createCarousel({ root, status, artworks, onOpen }: CarouselOptio
       go(step);
     }
   });
-
-  // Tilt the active frame toward the cursor.
-  if (finePointer() && !reducedMotion()) {
-    root.addEventListener('pointermove', (event) => {
-      const frame = items[active]?.querySelector<HTMLElement>('.frame');
-      if (!frame) return;
-      const rect = frame.getBoundingClientRect();
-      const px = (event.clientX - rect.left) / rect.width - 0.5;
-      const py = (event.clientY - rect.top) / rect.height - 0.5;
-      gsap.to(frame, {
-        rotationY: px * 10,
-        rotationX: -py * 10,
-        duration: 0.6,
-        ease: 'power3.out',
-      });
-    });
-    root.addEventListener('pointerleave', () => {
-      root
-        .querySelectorAll('.frame')
-        .forEach((frame) =>
-          gsap.to(frame, { rotationY: 0, rotationX: 0, duration: 0.8, ease: 'power3.out' }),
-        );
-    });
-  }
 
   window.addEventListener('resize', () => layout(false));
   layout(false);
