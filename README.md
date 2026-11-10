@@ -1,6 +1,6 @@
 # art-portfolio
 
-An animated, two-screen business card for Russel Diaz, 2D Illustrator & Concept Designer. Built with Vite, TypeScript and GSAP, and deployed to GitHub Pages.
+An animated, two-screen business card for Russel Diaz, 2D Illustrator & Concept Designer, live at https://russeldiaz.github.io/. Built with Vite, TypeScript and GSAP, and deployed to GitHub Pages.
 
 - Product requirements: [docs/PRD-russel-diaz-portfolio.md](docs/PRD-russel-diaz-portfolio.md)
 - Updating the featured carousel (for the owner): [docs/OWNER-GUIDE.md](docs/OWNER-GUIDE.md)
@@ -10,7 +10,7 @@ An animated, two-screen business card for Russel Diaz, 2D Illustrator & Concept 
 
 ```sh
 npm install
-npm run dev        # http://localhost:5173/art-portfolio/
+npm run dev        # http://localhost:5173/
 npm test           # unit tests
 npm run lint
 npm run build      # outputs dist/

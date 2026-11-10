@@ -28,8 +28,7 @@ jobs:
       - run: npm test
       - run: npm run build
         env:
-          # Served from https://<user>.github.io/<repo>/
-          BASE_PATH: /${{ github.event.repository.name }}/
+          # Optional override; the cloud name is already set in src/content.ts.
           # Set under Settings > Secrets and variables > Actions > Variables
           VITE_CLOUDINARY_CLOUD_NAME: ${{ vars.CLOUDINARY_CLOUD_NAME }}
       - uses: actions/configure-pages@v6
