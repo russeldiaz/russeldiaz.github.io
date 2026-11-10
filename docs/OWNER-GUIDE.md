@@ -14,15 +14,25 @@ To switch to a different Cloudinary account later, change the cloud name in `src
 
 1. In Cloudinary open **Media Library** and upload the image. Upload it at full quality: the site resizes it automatically.
 2. Select the image and add the tag `featured`.
-3. Optional: under _Contextual metadata_ (sometimes labelled _Context_), add:
-   - `caption`: the title shown on the card, e.g. `Sky Warden`
-   - `alt`: a short description for screen readers, e.g. `Armoured knight on a cliff at dusk`
-4. Reload the site. New pieces appear within about a minute.
+3. Optional, to give the piece a title:
+   1. Open the image (click it) and go to its **Metadata** tab.
+   2. Under **Contextual metadata**, fill in **Title (caption)**, e.g. `Sky Warden`. This is shown on the card and under the full-size view.
+   3. Optionally fill in **Description (alt)** with a short description for screen readers, e.g. `Armoured knight on a cliff at dusk`.
+   4. Click **Save**.
+
+   Renaming the file or changing its **Display name** does _not_ set the title. Only the _Title (caption)_ field under _Contextual metadata_ does.
+
+4. Reload the site. New pieces and title changes appear within about a minute.
 
 ## Removing or reordering
 
 - To **remove** a piece, delete the `featured` tag (the image itself can stay in Cloudinary).
 - **Order** is newest upload first. To move an older piece to the front, re-upload it.
+
+## If a title doesn't show
+
+- Check it was typed into **Title (caption)** under **Contextual metadata** (not the display name or file name), and that you clicked **Save**.
+- Wait a minute, then reload: Cloudinary refreshes the public list about once a minute.
 
 ## If the carousel shows the placeholder landscapes
 
