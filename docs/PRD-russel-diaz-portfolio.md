@@ -6,7 +6,7 @@ An animated online business card for Russel Diaz, 2D Illustrator & Concept Desig
 
 ## 3. Background
 
-Russel needs a link he can put on job applications and social profiles. A full gallery is not the goal: studios look at a few strong pieces and then decide to reach out or not. The design is inspired by hgjart.com (dark look, moving line-art background, tall framed cards). The text is English only.
+Russel needs a link he can put on job applications and social profiles. A full gallery is not the goal: studios look at a few strong pieces and then decide to reach out or not. The design is inspired by hgjart.com (dark look, moving line-art background, tall framed cards), in a strict black-and-white theme. The text is English only.
 
 ## 4. Objective
 
