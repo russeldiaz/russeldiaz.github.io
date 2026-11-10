@@ -490,6 +490,22 @@ main {
   border: 0;
   background: rgb(0 0 0 / 94%);
   color: var(--paper);
+  overscroll-behavior: contain;
+}
+
+/* While the viewer is open the page behind it is pinned in place, so pinch-zoom
+   and drags on phones can't scroll it or trigger the page snap. */
+html.scroll-locked {
+  overflow: hidden;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+html.scroll-locked body {
+  position: fixed;
+  left: 0;
+  right: 0;
+  overflow: hidden;
 }
 
 .lightbox::backdrop {
